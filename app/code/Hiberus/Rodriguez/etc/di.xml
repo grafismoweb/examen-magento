@@ -1,0 +1,17 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+
+    <preference for="Hiberus\Rodriguez\Api\Data\NotasInterface" type="Hiberus\Rodriguez\Model\Notas"/>
+    <preference for="Hiberus\Rodriguez\Api\NotasRepositoryInterface" type="Hiberus\Rodriguez\Model\NotasRepository"/>
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Hiberus\Rodriguez\Api\Data\NotasInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Hiberus\Rodriguez\Api\Data\NotasInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Hiberus\Rodriguez\Api\Data\NotasInterface::COLUMN_ID</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>
