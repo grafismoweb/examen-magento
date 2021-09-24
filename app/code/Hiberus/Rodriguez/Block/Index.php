@@ -8,6 +8,8 @@ use Hiberus\Rodriguez\Model\Notas;
 use Hiberus\Rodriguez\Api\Data\NotasInterfaceFactory;
 use \Magento\Framework\View\Element\Template\Context;
 use \Magento\Framework\Registry;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class Index extends \Magento\Framework\View\Element\Template
 {
@@ -25,8 +27,10 @@ class Index extends \Magento\Framework\View\Element\Template
                                 NotasRepositoryInterface $notasRepository,
                                 NotasInterfaceFactory    $notasInterfaceFactory,
                                 ResourceNotas            $notasResource,
+                                ScopeConfigInterface     $scopeConfig,
                                 array                    $data = []
     ) {
+        $this->scopeConfig = $scopeConfig;
         $this->registry = $registry;
         $this->notas = $notas;
         $this->notasRepository = $notasRepository;
@@ -36,11 +40,14 @@ class Index extends \Magento\Framework\View\Element\Template
     }
 
     public function getAlumno() {
-
         $crearAlumno = $this->notasInterfaceFactory->create();
-
         return $crearAlumno->getCollection();
 
+    }
+
+    public function getElementos() {
+        $elementos = $this->scopeConfig->getValue( 'hiberus_elementos/general/elementos', ScopeInterface::SCOPE_STORE);
+        return $elementos;
     }
 
     public function getAverageMarks(){
@@ -54,5 +61,37 @@ class Index extends \Magento\Framework\View\Element\Template
         return $mediaNotas;
     }
 
+    public function getNota() {
+        $nota = $this->scopeConfig->getValue( 'hiberus_elementos/general/aprobados', ScopeInterface::SCOPE_STORE);
+        return $nota;
+    }
 
+    public function getMaxMarks(){
+        $total = $this->getAlumno();
+        $marks = [];
+        $maxMarks = [];
+        foreach ($total as $item){
+            $marks[] = $item->getMark();
+        }
+        $max = max($marks);
+        foreach ($marks as $mark){
+            $nota = $mark;
+            if($nota <= $max && count($maxMarks) < 3){
+                $notaMax = $nota;
+                $maxMarks[] = $notaMax;
+            }
+        }
+        return $maxMarks;
+    }
+
+    public function getMaxMark() {
+        $alumnos = $this->notasInterfaceFactory->create()->getCollection()->getData();
+        $maxMark = 0;
+        foreach ($alumnos as $alumno) {
+            if ($alumno['mark'] > $maxMark) {
+                $maxMark = $alumno['mark'];
+            }
+        }
+        return $maxMark;
+    }
 }
