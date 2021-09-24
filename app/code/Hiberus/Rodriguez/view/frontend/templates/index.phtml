@@ -15,6 +15,9 @@ $maxMarks = $block->getMaxMarks();
 
 <!-- Ejercicio 7 js -->
 <button id="desplegar">Desplegar</button>
+<!-- Ejercicio 9 js -->
+<button id="notaMasAlta">nota mas alta</button>
+
 
 <div id="details"><!-- div toggle btn -->
 
@@ -23,7 +26,7 @@ $maxMarks = $block->getMaxMarks();
     foreach ($alumnos as $alumno) {
         // Para que salga rojo suspensos y verdes aprobados
         if ($i++ == $elementos) break;
-        if ($alumno->getMark() > $notaMinima) {
+        if ($alumno->getMark() > $notaMinima) { // 4.9
             $classEvaluation = "approved";
         } else {
             $classEvaluation = "suspensed";
@@ -33,19 +36,32 @@ $maxMarks = $block->getMaxMarks();
         <ul>
             <li>Nombre:<?= $alumno->getFirstName(); ?></li>
             <li>Apellido: <?= $alumno->getLastName(); ?></li>
-            <li>Nota:<?= $alumno->getMark(); ?></li>
+            <li class="<?= $classEvaluation ?>">Nota:<?= $alumno->getMark(); ?></li>
         </ul>
 
     <?php } ?>
 
 </div> <!-- div toggle btn -->
 
+<p>Notas mas altas:<p/>
+<?php foreach($maxMarks as $mark) { ?>
+    <p><?= $mark ?></p>
+<?php } ?>
+
 <p> Media de notas: <?= $notas ?> </p>
 <p> Total de alumnos: <?= (count($alumnos)) ?> </p>
 
 <script>
+    var maxNote = <?= $block->getMaxMark() ?>
+</script>
+
+
+<script>
     require(['jquery', 'toggle'], function ($, myscript) {
         myscript('#desplegar', '#details');
+    });
+    require(['jquery', 'alert'], function($, alertNotaAlta) {
+        alertNotaAlta('#notaMasAlta');
     });
 </script>
 

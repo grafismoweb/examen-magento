@@ -45,6 +45,7 @@ class Index extends \Magento\Framework\View\Element\Template
 
     }
 
+    // Obtiene los datos del administrador
     public function getElementos() {
         $elementos = $this->scopeConfig->getValue( 'hiberus_elementos/general/elementos', ScopeInterface::SCOPE_STORE);
         return $elementos;
@@ -66,6 +67,7 @@ class Index extends \Magento\Framework\View\Element\Template
         return $nota;
     }
 
+    // Ejercicio 13. Mtodo que devuelve las 3 mejores notas
     public function getMaxMarks(){
         $total = $this->getAlumno();
         $marks = [];
