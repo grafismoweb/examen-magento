@@ -9,19 +9,33 @@ $notas = $block->getAverageMarks()
 
 <h2 class="title">Alumnos</h2>
 
-<?php
+<!-- Ejercicio 7 js -->
+<button id="desplegar">Desplegar</button>
 
-foreach($alumnos as $alumno) {
-// METER PARA QUE SALGA ROJO O VERDE APROBADOS O SUSPENSOS
-    ?>
+<div id="details"><!-- div toggle btn -->
 
-    <ul>
-        <li>Nombre:<?= $alumno->getFirstName(); ?></li>
-        <li>Apellido: <?= $alumno->getLastName(); ?></li>
-        <li>Nota:<?= $alumno->getMark(); ?></li>
-    </ul>
+    <?php
 
-<?php } ?>
-<p> Media de notas: <?=$notas?> </p>
+    foreach ($alumnos as $alumno) {
+    // Para que salga rojo suspensos y verdes aprobados
+        ?>
 
+        <ul>
+            <li>Nombre:<?= $alumno->getFirstName(); ?></li>
+            <li>Apellido: <?= $alumno->getLastName(); ?></li>
+            <li>Nota:<?= $alumno->getMark(); ?></li>
+        </ul>
+
+    <?php } ?>
+
+</div> <!-- div toggle btn -->
+
+<p> Media de notas: <?= $notas ?> </p>
 <p> Total de alumnos: <?= (count($alumnos)) ?> </p>
+
+<script>
+    require(['jquery', 'toggle'], function ($, myscript) {
+        myscript('#desplegar', '#details');
+    });
+</script>
+
