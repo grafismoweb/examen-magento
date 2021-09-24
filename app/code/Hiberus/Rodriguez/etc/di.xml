@@ -15,7 +15,16 @@
     </type>
 
     <!-- plugin -->
+    <type name="Hiberus\Rodriguez\Model\Notas">
+        <plugin name="notas_plugin" type="Hiberus\Rodriguez\Plugin\Marks\MarksPlugin" sortOrder="10"  />
+    </type>
 
     <!-- comando -->
-
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="comando_rodriguez" xsi:type="object">Hiberus\Rodriguez\Console\NotasCommand</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
