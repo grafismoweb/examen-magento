@@ -14,9 +14,9 @@ $maxMarks = $block->getMaxMarks();
 <h2 class="title">Alumnos</h2>
 
 <!-- Ejercicio 7 js -->
-<button id="desplegar">Desplegar</button>
+<button class="button" id="desplegar">Alumnos/as</button>
 <!-- Ejercicio 9 js -->
-<button id="notaMasAlta">nota mas alta</button>
+<button class="button" id="notaMasAlta">Nota mas alta</button>
 
 
 <div id="details"><!-- div toggle btn -->
@@ -34,22 +34,29 @@ $maxMarks = $block->getMaxMarks();
         ?>
 
         <ul>
-            <li>Nombre:<?= $alumno->getFirstName(); ?></li>
-            <li>Apellido: <?= $alumno->getLastName(); ?></li>
-            <li class="<?= $classEvaluation ?>">Nota:<?= $alumno->getMark(); ?></li>
+            <li><span class="textBold">Nombre </span><?= $alumno->getFirstName(); ?></li>
+            <li><span class="textBold">Apellidos </span><?= $alumno->getLastName(); ?></li>
+            <li class="<?= $classEvaluation ?>">Nota <?= $alumno->getMark(); ?></li>
         </ul>
 
     <?php } ?>
 
 </div> <!-- div toggle btn -->
 
-<p>Notas mas altas:<p/>
+
+<div class="calculate">
+<p class="textBold textColor">Las 3 mayores notas obtenidas<p/>
+|
 <?php foreach($maxMarks as $mark) { ?>
-    <p><?= $mark ?></p>
+    <?= $mark ?> |
 <?php } ?>
 
-<p> Media de notas: <?= $notas ?> </p>
-<p> Total de alumnos: <?= (count($alumnos)) ?> </p>
+<p class="textBold textColor"> Media de notas </p>
+<p><?= $notas ?></p>
+
+<p class="textBold textColor"> Total de alumnos </p>
+<p><?= (count($alumnos)) ?></p>
+</div>
 
 <script>
     var maxNote = <?= $block->getMaxMark() ?>
