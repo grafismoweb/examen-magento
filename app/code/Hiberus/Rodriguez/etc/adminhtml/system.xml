@@ -6,19 +6,19 @@
             <label>Hiberus</label>
         </tab>
         <section id="hiberus_elementos" showInDefault="1" sortOrder="10">
-            <label>Notas Elementos</label>
+            <label>Notas</label>
             <tab>hiberus</tab>
             <resource>Hiberus_Rodriguez::config</resource>
             <group id="general" showInDefault="1" sortOrder="10">
                 <label>General</label>
 
                 <field id="elementos" type="text" sortOrder="10" showInDefault="1">
-                    <label>Elementos</label>
+                    <label>Numero de elementos a mostrar</label>
                     <validate>integer</validate>
                 </field>
 
                 <field id="aprobados" type="text" sortOrder="10" showInDefault="1">
-                    <label>Aprobados</label>
+                    <label>Nota minima para el aprobado</label>
                     <validate>validate-number</validate>
                 </field>
             </group>

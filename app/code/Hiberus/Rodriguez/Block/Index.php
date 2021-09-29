@@ -67,7 +67,7 @@ class Index extends \Magento\Framework\View\Element\Template
         return $nota;
     }
 
-    // Ejercicio 13. Mtodo que devuelve las 3 mejores notas
+    // Ejercicio 13. Metodo que devuelve las 3 mejores notas
     public function getMaxMarks(){
         $total = $this->getAlumno();
         $marks = [];
